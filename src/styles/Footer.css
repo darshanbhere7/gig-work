@@ -1,0 +1,16 @@
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+  }
+  
+  .footer a {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .footer a:hover {
+    color: #00abe4;
+  }
+  

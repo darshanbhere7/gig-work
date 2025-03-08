@@ -1,0 +1,40 @@
+/* Light and Dark mode styles */
+body {
+    transition: background 0.5s, color 0.5s;
+  }
+  
+  body.dark-mode {
+    background: #121212;
+    color: #ffffff;
+  }
+  
+  body.light-mode {
+    background: #ffffff;
+    color: #121212;
+  }
+  
+  /* Toggle button styling */
+  .toggle-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 10px;
+  }
+  
+  .toggle-btn.light {
+    background-color: #00abe4;
+    color: #fff;
+  }
+  
+  .toggle-btn.dark {
+    background-color: #ffffff;
+    color: #121212;
+  }
+  
+  .toggle-btn:hover {
+    transform: scale(1.1);
+  }
+  
