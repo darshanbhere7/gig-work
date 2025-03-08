@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./../styles/Header.css";
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Used for redirecting after logout
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   // Don't show navbar on login/signup pages
@@ -11,9 +12,15 @@ const Header = () => {
     return null;
   }
 
+  // Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    navigate("/login"); // Redirect to login page after logout
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3 shadow-sm">
-      <Link to="/" className="navbar-brand fs-4">
+      <Link to="/" className="navbar-brand fs-4 animate__animated animate__fadeIn">
         🎯 Gig Worker Hub
       </Link>
       <button
@@ -47,7 +54,6 @@ const Header = () => {
         </ul>
       </div>
       <div className="d-flex align-items-center">
-        <img src="/assets/logo.png" alt="Profile" width="35" height="35" className="rounded-circle me-2" />
         <div className="dropdown">
           <Link
             to="#"
@@ -55,23 +61,25 @@ const Header = () => {
             id="navbarDropdown"
             role="button"
             data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
             {loggedInUser.name || "User"}
           </Link>
           <ul className="dropdown-menu dropdown-menu-end">
-            <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
-            <li><Link to="/settings" className="dropdown-item">Settings</Link></li>
+            <li>
+              <Link to="/profile" className="dropdown-item">Profile</Link>
+            </li>
+            <li>
+              <Link to="/settings" className="dropdown-item">Settings</Link>
+            </li>
             <li><hr className="dropdown-divider" /></li>
             <li>
-              <Link
-                to="/login"
+              <button
                 className="dropdown-item"
-                onClick={() => {
-                  localStorage.removeItem("loggedInUser");
-                }}
+                onClick={handleLogout}
               >
                 Sign out
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
